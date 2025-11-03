@@ -7,23 +7,30 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <style>
-        /* Renk Paleti Değişkenleri */
-       /* ÖNERİ 2: Modern Yeşil & Antrasit */
+   <style>
+        /* YENİ PALET: Zengin ve Klas Adaçayı Yeşili */
         :root {
-            --color1: #2E7D32; /* Koyu Yeşil (Ana Vurgu) */
-            --color2: #4CAF50; /* Canlı Yeşil (Başlıklar) */
-            --color3: #E8F5E9; /* Çok Açık Yeşil (Hover/Arka Plan) */
-            --color4: #e0e0e0; /* Açık Gri (Çizgiler) */
-            --color5: #fafafa; /* En Açık Gri (Aktif Başlık BG) */
-            --text-dark: #333;
-            --text-light: #555;
-            --background-body: #f9f9f9; /* Veya #ffffff */
+            /* Ana Vurgu Renkleri (Tok Yeşiller) */
+            --color1: #4A6C53; /* Zengin Adaçayı Yeşili (Sidebar Başlık, İkonlar) */
+            --color2: #6A8B71; /* Orta Ton Adaçayı (Kart Başlıkları, Borderlar) */
+            
+            /* Arka Plan Renkleri (Tone-on-Tone) */
+            --background-body: #f7f8f6;       /* En Dış Zemin (Çok hafif kirli beyaz) */
+            --background-main: #E9EEE7;       /* Sağ Tarafın Arka Planı (Açık Yeşim) */
+            --background-card: #FFFFFF;       /* Kartların Arka Planı (Saf Beyaz) */
+            --background-card-hover: #F7F9F7; /* Kart Hover/Aktif Rengi */
+
+            /* Metin Renkleri */
+            --text-dark: #2F3D33; /* Koyu Yeşil-Antrasit (Daha okunaklı) */
+            --text-light: #59655D; /* Orta ton metin */
+
+            /* Diğer Renkler */
+            --border-color: #DCE2D9; /* Kart çizgisi */
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background-body);
+            background-color: var(--background-body); /* 1. Değişiklik: En dış zemin */
             color: var(--text-dark);
             line-height: 1.6;
             margin: 0;
@@ -36,7 +43,7 @@
         .sidebar {
             width: 300px;
             min-width: 280px;
-            background-color: #ffffff;
+            background-color: #ffffff; /* Sol panel beyaz kalarak kontrast yaratır */
             padding: 40px 30px;
             box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
             position: sticky;
@@ -47,7 +54,7 @@
             align-items: center;
             text-align: center;
             overflow-y: auto;
-            border-right: 1px solid var(--color4);
+            border-right: 1px solid var(--border-color);
         }
 
         .profile-pic {
@@ -55,7 +62,7 @@
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--color3);
+            border: 5px solid var(--color2); /* Sınırı ana yeşil tonu yaptık */
             margin-bottom: 25px;
         }
 
@@ -79,37 +86,32 @@
             margin-top: 20px;
             color: var(--text-light);
             font-size: 0.95rem;
-            text-align: left; /* İkonlarla daha iyi hizalama için */
+            text-align: left;
         }
 
-        .contact-info li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .contact-info .fas { /* Font Awesome ikonları için stil */
-            color: var(--color1);
-            width: 20px; /* İkonlar için sabit genişlik */
-            text-align: center;
-        }
+        .contact-info li { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .contact-info .fas { color: var(--color1); width: 20px; text-align: center; }
 
         /* Ana İçerik Alanı - Kaydırılabilir Kısım */
         .main-content {
             flex-grow: 1;
             padding: 40px;
             overflow-y: auto;
+            background-color: var(--background-main); /* 2. Değişiklik: Sağ tarafın zemini */
+            
+            /* Geniş ekranlarda boşluk hissini engellemek için */
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         /* Bölüm Kartı */
         .section-card {
-            background-color: #ffffff;
+            background-color: var(--background-card); /* 3. Değişiklik: Kartların zemini (açık ton) */
             border-radius: 16px;
-            margin-bottom: 20px; /* Kartlar arası boşluk */
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
-            border: 1px solid var(--color4);
-            overflow: hidden; /* Animasyon için önemli */
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(90, 107, 94, 0.07); /* Hafif yeşil gölge */
+            border: 1px solid var(--border-color);
+            overflow: hidden;
         }
 
         /* Tıklanabilir Başlık (Akordeon Tetikleyici) */
@@ -124,15 +126,15 @@
         }
         
         .section-card h2:hover {
-            background-color: var(--color5);
+            background-color: var(--background-card-hover);
             color: var(--color1);
         }
 
         /* Aktif başlığın stili */
         .section-card h2.active {
             color: var(--color1);
-            background-color: var(--color5);
-            border-bottom: 1px solid var(--color4);
+            background-color: var(--background-card-hover);
+            border-bottom: 1px solid var(--border-color);
         }
 
         /* Akordeon ikonu (ok) */
@@ -148,28 +150,27 @@
         }
 
         .section-card h2.active::after {
-            transform: translateY(-50%) rotate(180deg); /* Ok'u döndür */
+            transform: translateY(-50%) rotate(180deg);
             color: var(--color1);
         }
         
         /* Akordeon İçeriği (Gizli Alan) */
         .section-content {
-            max-height: 0; /* JS ile açılacak */
+            max-height: 0;
             overflow: hidden;
             opacity: 0;
-            padding: 0 30px; /* Açılınca padding gelecek */
+            padding: 0 30px;
             transition: max-height 0.5s ease-out, opacity 0.4s ease-in, padding 0.5s ease-out;
             border-top: none;
         }
         
-        /* JS ile eklenecek 'open' sınıfı */
         .section-content.open {
-            max-height: 1000px; /* İçeriğin sığması için büyük bir değer */
+            max-height: 1000px;
             opacity: 1;
             padding: 20px 30px 30px 30px;
         }
         
-        /* İçerik stilleri (Önceki koddan) */
+        /* İçerik stilleri */
         .job-entry, .education-entry {
             margin-bottom: 25px;
             padding-left: 15px;
@@ -196,7 +197,7 @@
             font-weight: 600;
             padding: 12px 15px;
             border-left: 5px solid var(--color2);
-            background-color: var(--color5);
+            background-color: var(--background-main); /* Ana zemin rengiyle aynı yaptık */
             margin-bottom: 12px;
             border-radius: 0 10px 10px 0;
         }
@@ -212,7 +213,7 @@
                 padding: 30px 20px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
                 border-right: none;
-                border-bottom: 1px solid var(--color4);
+                border-bottom: 1px solid var(--border-color);
             }
             .main-content { padding: 30px 20px; }
             .profile-pic { width: 150px; height: 150px; }
@@ -355,4 +356,5 @@
 </body>
 
 </html>
+
 
